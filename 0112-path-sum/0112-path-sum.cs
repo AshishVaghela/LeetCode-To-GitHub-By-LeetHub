@@ -20,18 +20,11 @@ public class Solution {
         if(node == null)
             return false;
 
-        bool hasSum = false;
-
-        if(node.left != null){
-            hasSum = DFS(node.left, targetSum - node.val);
-        }
-        if(!hasSum && node.right != null){
-            hasSum = DFS(node.right, targetSum - node.val);
-        }
-
         if(node.left == null && node.right == null){
             return node.val == targetSum;
         }
-        return hasSum;
+
+        return DFS(node.left, targetSum - node.val) || DFS(node.right, targetSum - node.val);
+        
     }
 }
